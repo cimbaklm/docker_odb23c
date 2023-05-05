@@ -1,0 +1,58 @@
+# Creation time : 2m
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - oracle_network
+    depends_on:
+      ords:
+        condition: service_healthy
+  oracle:
+    image: gvenzl/oracle-free:latest
+    hostname: oracle
+    environment:
+      ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
+      APP_USER: app
+      APP_USER_PASSWORD: ${DATABASE_APP_PASSWORD}
+    ports:
+      - 1521:1521
+    volumes:
+      - ./data/databases:/opt/oracle/oradata
+    networks:
+      - oracle_network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  ords:
+    image: container-registry.oracle.com/database/ords:latest
+    hostname: ords
+    environment:
+      IGNORE_APEX: "TRUE"
+      VIRTUAL_HOST: ords.demodocker.fr
+      VIRTUAL_PORT: 8181
+    ports:
+      - 27017:27017
+    volumes:
+    # echo CONN_STRING=sys/$(cat $HOME/db23c_database/secrets/dbcred.txt)@oracle:1521/FREEPDB1 > secrets/conn_string.txt
+    # docker exec -it db23c_ords-ords-1 tail -f /tmp/install_container.log
+       - ./secrets:/opt/oracle/variables
+       - ./settings/:/etc/ords/config/
+    networks:
+      - oracle_network
+    healthcheck:
+      test: ["CMD", "curl", "-X", "GET", "http://ords:8181/ords"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    depends_on:
+      oracle:
+        condition: service_healthy
+networks:
+  oracle_network:
+    driver: bridge
