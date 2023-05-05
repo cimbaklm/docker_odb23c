@@ -21,7 +21,7 @@ services:
     ports:
       - 1521:1521
     volumes:
-      - ./data/databases:/opt/oracle/oradata
+      - $DB_DATA_BASE_DIR/data/databases:/opt/oracle/oradata
     networks:
       - oracle_network
     healthcheck:
@@ -39,10 +39,8 @@ services:
     ports:
       - 27017:27017
     volumes:
-    # echo CONN_STRING=sys/$(cat $HOME/db23c_database/secrets/dbcred.txt)@oracle:1521/FREEPDB1 > secrets/conn_string.txt
-    # docker exec -it db23c_ords-ords-1 tail -f /tmp/install_container.log
-       - ./secrets:/opt/oracle/variables
-       - ./settings/:/etc/ords/config/
+       - $ORDS_SECRETS_BASE_DIR/ords_secrets:/opt/oracle/variables
+       - $ORDS_SETTINGS_BASE_DIR/ords_settings/:/etc/ords/config/
     networks:
       - oracle_network
     healthcheck:
