@@ -20,7 +20,7 @@ git clone git clone https://github.com/cimbaklm/docker_odb23c.git
 │   └── docker-compose.yaml
 └── db23c_ords
     └── docker-compose.yaml
-'''
+```
 
 db23c is the full compose package, it include : Oracle DB 23c FREE for dev latest, Oracle REST DATA Services latest, and NGINX in order to expose ORDS REST API
 db23c_database create the database only
@@ -28,6 +28,10 @@ db23c_ords attach ORDS to a previously created database
 
 ## Usage
 
+### For db23c
 
+### For db23c_database
+
+### For db23c_ords
 
 
