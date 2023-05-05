@@ -1,0 +1,29 @@
+# Creation time : 6m
+services:
+  ords:
+    image: container-registry.oracle.com/database/ords
+    hostname: ords
+    environment:
+    # docker inspect <container_id> | jq '.[0].Config.Env'
+      IGNORE_APEX: "TRUE"
+      VIRTUAL_HOST: ords.demodocker.fr
+      VIRTUAL_PORT: 8181
+    ports:
+      - 8181:8181
+      - 27017:27017
+    volumes:
+    # echo CONN_STRING=sys/$(cat $HOME/db23c_database/secrets/dbcred.txt)@oracledb23c:1521/FREEPDB1 > secrets/conn_string.txt
+    # docker exec -it db23c_ords-ords-1 tail -f /tmp/install_container.log
+       - ./secrets:/opt/oracle/variables:ro
+       - ./settings/:/etc/ords/config/
+    networks:
+      - oracle_network
+    healthcheck:
+      test: ["CMD", "curl", "-X", "GET", "http://ords:8181/ords"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+networks:
+  oracle_network:
+    name: db23c_database_oracle_network
+    external: true
