@@ -1,1 +1,0 @@
-CONN_STRING=sys/Imust-change2023It@oracle:1521/FREEPDB1
