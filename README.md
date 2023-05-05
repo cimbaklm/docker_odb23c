@@ -13,15 +13,21 @@ git clone git clone https://github.com/cimbaklm/docker_odb23c.git
 ## Tree
 
 ```python
+├── README.md
+├── db23c
+│   └── docker-compose.yaml
+├── db23c_database
+│   └── docker-compose.yaml
+└── db23c_ords
+    └── docker-compose.yaml
+'''
+
+db23c is the full compose package, it include : Oracle DB 23c FREE for dev latest, Oracle REST DATA Services latest, and NGINX in order to expose ORDS REST API
+db23c_database create the database only
+db23c_ords attach ORDS to a previously created database
+
+## Usage
 
 
-## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
