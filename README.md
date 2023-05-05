@@ -15,10 +15,13 @@ git clone git clone https://github.com/cimbaklm/docker_odb23c.git
 ```python
 ├── README.md
 ├── db23c
+│   ├── .env
 │   └── docker-compose.yaml
 ├── db23c_database
+│   ├── .env
 │   └── docker-compose.yaml
 └── db23c_ords
+    ├── .env
     └── docker-compose.yaml
 ```
 
