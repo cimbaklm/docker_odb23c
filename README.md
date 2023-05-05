@@ -33,6 +33,10 @@ db23c_ords attach ORDS to a previously created database
 
 ### For db23c
 
+    # echo CONN_STRING=sys/$(cat $HOME/db23c_database/secrets/dbcred.txt)@oracle:1521/FREEPDB1 > secrets/conn_string.txt
+    # docker exec -it db23c_ords-ords-1 tail -f /tmp/install_container.log
+
+
 ### For db23c_database
 
 ### For db23c_ords
