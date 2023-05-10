@@ -5,14 +5,12 @@ services:
     hostname: oracledb23c
     environment:
       ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
-      APP_USER: app
+      APP_USER: ${DATABASE_APP_USER}
       APP_USER_PASSWORD: ${DATABASE_APP_PASSWORD}
     ports:
       - 1521:1521
     volumes:
       - ./data/databases:/opt/oracle/oradata
-#      - ./secrets/dbcred.txt:/run/secrets/oracle-passwd:ro
-#      - ./secrets/appcred.txt:/run/secrets/oracle-app-passwd:ro
     networks:
       - oracle_network
     healthcheck: 

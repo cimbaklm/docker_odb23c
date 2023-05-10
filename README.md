@@ -36,7 +36,7 @@ For every compose file, the .env file has to be used to configure the resource t
 ## Prerequisites
 
 Ubuntu 22.04 (other OS or version should also work)
-Latest Docker CE
+Latest Docker CE with docker compose plugin
 Latest SQLcl for connection testing
 
 Fill the .env file corresponding to the compose file you want to use (db23c contains the full set of entries) :
@@ -62,13 +62,69 @@ ORDS_SETTING_API_PORT=8181
         - An Nginx reverse proxy with a backend pointing to the ORDS API
 
     Configuration :
+    '''python
+    cd db23c
+    source .env
+    # Directories creation
+    mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
+    mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
+    mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
+    
+    # Secret file for ORDS first configuration
+    echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
+    ```
 
-    # echo CONN_STRING=sys/$(cat $HOME/db23c_database/secrets/dbcred.txt)@oracle:1521/FREEPDB1 > secrets/conn_string.txt
-
+    Creation of the container :
+    '''python
+    cd db23c
+    docker compose up -d
+    docker ps
+    ```
 
 ### For db23c_database
 
+    This docker compose file will create :
+        - A latest Oracle Database 23c fre for developers with psersistent datafiles
+
+    Configuration :
+    '''python
+    cd db23c_database
+    source .env
+    # Directory creation
+    mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
+    ```
+
+    Creation of the container :
+    '''python
+    cd db23c_database
+    docker compose up -d
+    docker ps
+    ```
+
 ### For db23c_ords
+
+    This docker compose file will create :
+        - A latest Oracle REST Data Services connected to the database
+        - An Nginx reverse proxy with a backend pointing to the ORDS API
+
+    Configuration :
+    '''python
+    cd db23c
+    source .env
+    # Directories creation
+    mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
+    mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
+    
+    # Secret file for ORDS first configuration
+    echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
+    ```
+
+    Creation of the container :
+    '''python
+    cd db23c_ords
+    docker compose up -d
+    docker ps
+    ```
 
 ## Troubleshoot
 

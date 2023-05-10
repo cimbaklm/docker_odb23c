@@ -39,8 +39,8 @@ services:
     ports:
       - 27017:27017
     volumes:
-       - $ORDS_SETTINGS_BASE_DIR/ords_secrets:/opt/oracle/variables
-       - $ORDS_SETTINGS_BASE_DIR/ords_settings/:/etc/ords/config/
+       - $ORDS_SETTINGS_BASE_DIR/secrets:/opt/oracle/variables
+       - $ORDS_SETTINGS_BASE_DIR/settings:/etc/ords/config
     networks:
       - oracle_network
     healthcheck:
