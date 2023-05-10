@@ -42,13 +42,13 @@ Latest SQLcl for connection testing
 Fill the .env file corresponding to the compose file you want to use (db23c contains the full set of entries) :
 
 ```python
-23c Database configuration entries (db32c_database) :
+# 23c Database configuration entries (db32c_database) :
 DATABASE_SYSTEM_PASSWORD ==> sys & system password
 DATABASE_APP_USER ==> application user name
 DATABASE_APP_PASSWORD ==> application user password
 DB_DATA_BASE_DIR ==> Database files, points to /opt/oracle/oradata in the container
 
-ORDS configuration entries (db23c_ords) :
+# ORDS configuration entries (db23c_ords) :
 IGNORE_APEX ==> Possible vaules are TRUE (default) or FALSE. Used either to install APEX or not
 ORDS_SETTINGS_BASE_DIR=.
 ORDS_SETTING_API_URL=ords.demodocker.fr
@@ -64,25 +64,25 @@ ORDS_SETTING_API_PORT=8181
 
     Configuration :
 
-    ```python
-    cd db23c
-    source .env
-    # Directories creation
-    mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
-    mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
-    mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
-    
-    # Secret file for ORDS first configuration
-    echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
-    ```
+```python
+cd db23c
+source .env
+# Directories creation
+mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
+mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
+mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
+
+# Secret file for ORDS first configuration
+echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
+```
 
     Creation of the container :
 
-    ```python
-    cd db23c
-    docker compose up -d
-    docker ps
-    ```
+```python
+cd db23c
+docker compose up -d
+docker ps
+```
 
 ### For db23c_database
 
@@ -91,20 +91,20 @@ ORDS_SETTING_API_PORT=8181
 
     Configuration :
 
-    ```python
-    cd db23c_database
-    source .env
-    # Directory creation
-    mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
-    ```
+```python
+cd db23c_database
+source .env
+# Directory creation
+mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
+```
 
     Creation of the container :
 
-    ```python
-    cd db23c_database
-    docker compose up -d
-    docker ps
-    ```
+```python
+cd db23c_database
+docker compose up -d
+docker ps
+```
 
 ### For db23c_ords
 
@@ -114,24 +114,24 @@ ORDS_SETTING_API_PORT=8181
 
     Configuration :
 
-    ```python
-    cd db23c
-    source .env
-    # Directories creation
-    mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
-    mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
-    
-    # Secret file for ORDS first configuration
-    echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
-    ```
+```python
+cd db23c_ords
+source .env
+# Directories creation
+mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
+mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
+
+# Secret file for ORDS first configuration
+echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
+```
 
     Creation of the container :
 
-    ```python
-    cd db23c_ords
-    docker compose up -d
-    docker ps
-    ```
+```python
+cd db23c_ords
+docker compose up -d
+docker ps
+```
 
 ## Troubleshoot
 
