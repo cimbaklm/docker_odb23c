@@ -21,7 +21,7 @@ services:
     ports:
       - 1521:1521
     volumes:
-      - $DB_DATA_BASE_DIR/data/databases:/opt/oracle/oradata
+      - $DB_DATA_BASE_DIR/data:/opt/oracle/oradata
     networks:
       - oracle_network
     healthcheck:

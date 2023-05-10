@@ -68,12 +68,14 @@ Configuration :
 cd db23c
 source .env
 # Directories creation
-mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
-mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
-mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
+sudo mkdir -p ${DB_DATA_BASE_DIR} ; sudo chown $USER:$USER ${DB_DATA_BASE_DIR}
+sudo mkdir -p ${ORDS_SETTINGS_BASE_DIR} ; sudo chown $USER:$USER ${ORDS_SETTINGS_BASE_DIR}
+mkdir -p ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/secrets
+mkdir -p ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
+mkdir -p ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data ; sudo chown :54321 ${DB_DATA_BASE_DIR}/data
 
 # Secret file for ORDS first configuration
-echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
+echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}/secrets/conn_string.txt
 ```
 
 Creation of the container :
