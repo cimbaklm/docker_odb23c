@@ -62,7 +62,7 @@ This docker compose file will create :
     - A latest Oracle REST Data Services connected to the database
     - An Nginx reverse proxy with a backend pointing to the ORDS API
 
-    Configuration :
+Configuration :
 
 ```python
 cd db23c
@@ -76,7 +76,7 @@ mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 7
 echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
 ```
 
-    Creation of the container :
+Creation of the container :
 
 ```python
 cd db23c
