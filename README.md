@@ -50,9 +50,9 @@ DB_DATA_BASE_DIR ==> Database files, points to /opt/oracle/oradata in the contai
 
 # ORDS configuration entries (db23c_ords) :
 IGNORE_APEX ==> Possible vaules are TRUE (default) or FALSE. Used either to install APEX or not
-ORDS_SETTINGS_BASE_DIR=.
-ORDS_SETTING_API_URL=ords.demodocker.fr
-ORDS_SETTING_API_PORT=8181
+ORDS_SETTINGS_BASE_DIR ==> Settings and secret file for ORDS installation and configuration (i.e /opt/ords)
+ORDS_SETTING_API_URL ==> Name to use in Nginx reverse proxy (i.e ords.demodocker.fr)
+ORDS_SETTING_API_PORT= ==> Port used by ORDS (default 8181, until changed in the configuration after installation)
 ```
 
 ### For db23c
