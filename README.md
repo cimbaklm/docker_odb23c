@@ -41,7 +41,7 @@ Latest SQLcl for connection testing
 
 Fill the .env file corresponding to the compose file you want to use (db23c contains the full set of entries) :
 
-'''python
+```python
 23c Database configuration entries (db32c_database) :
 DATABASE_SYSTEM_PASSWORD ==> sys & system password
 DATABASE_APP_USER ==> application user name
@@ -64,7 +64,7 @@ ORDS_SETTING_API_PORT=8181
 
     Configuration :
 
-    '''python
+    ```python
     cd db23c
     source .env
     # Directories creation
@@ -78,7 +78,7 @@ ORDS_SETTING_API_PORT=8181
 
     Creation of the container :
 
-    '''python
+    ```python
     cd db23c
     docker compose up -d
     docker ps
@@ -91,7 +91,7 @@ ORDS_SETTING_API_PORT=8181
 
     Configuration :
 
-    '''python
+    ```python
     cd db23c_database
     source .env
     # Directory creation
@@ -100,7 +100,7 @@ ORDS_SETTING_API_PORT=8181
 
     Creation of the container :
 
-    '''python
+    ```python
     cd db23c_database
     docker compose up -d
     docker ps
@@ -114,7 +114,7 @@ ORDS_SETTING_API_PORT=8181
 
     Configuration :
 
-    '''python
+    ```python
     cd db23c
     source .env
     # Directories creation
@@ -126,8 +126,8 @@ ORDS_SETTING_API_PORT=8181
     ```
 
     Creation of the container :
-    
-    '''python
+
+    ```python
     cd db23c_ords
     docker compose up -d
     docker ps
