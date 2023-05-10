@@ -43,16 +43,16 @@ Fill the .env file corresponding to the compose file you want to use (db23c cont
 
 ```python
 # 23c Database configuration entries (db32c_database) :
-DATABASE_SYSTEM_PASSWORD ==> sys & system password
-DATABASE_APP_USER ==> application user name
-DATABASE_APP_PASSWORD ==> application user password
-DB_DATA_BASE_DIR ==> Database files, points to /opt/oracle/oradata in the container
+DATABASE_SYSTEM_PASSWORD     ==> sys & system password
+DATABASE_APP_USER            ==> application user name
+DATABASE_APP_PASSWORD        ==> application user password
+DB_DATA_BASE_DIR             ==> Database files, points to /opt/oracle/oradata in the container
 
 # ORDS configuration entries (db23c_ords) :
-IGNORE_APEX ==> Possible vaules are TRUE (default) or FALSE. Used either to install APEX or not
-ORDS_SETTINGS_BASE_DIR ==> Settings and secret file for ORDS installation and configuration (i.e /opt/ords)
-ORDS_SETTING_API_URL ==> Name to use in Nginx reverse proxy (i.e ords.demodocker.fr)
-ORDS_SETTING_API_PORT= ==> Port used by ORDS (default 8181, until changed in the configuration after installation)
+IGNORE_APEX                  ==> Possible vaules are TRUE (default) or FALSE. Used either to install APEX or not
+ORDS_SETTINGS_BASE_DIR       ==> Settings and secret file for ORDS installation and configuration (i.e /opt/ords)
+ORDS_SETTING_API_URL         ==> Name to use in Nginx reverse proxy (i.e ords.demodocker.fr)
+ORDS_SETTING_API_PORT        ==> Port used by ORDS (default 8181, until changed in the configuration after installation)
 ```
 
 ### For db23c
