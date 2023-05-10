@@ -1,21 +1,28 @@
 # Creation time : 6m
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - oracle_network
+    depends_on:
+      ords:
+        condition: service_healthy
   ords:
     image: container-registry.oracle.com/database/ords
     hostname: ords
     environment:
-    # docker inspect <container_id> | jq '.[0].Config.Env'
-      IGNORE_APEX: "TRUE"
-      VIRTUAL_HOST: ords.demodocker.fr
-      VIRTUAL_PORT: 8181
+      IGNORE_APEX: "$IGNORE_APEX"
+      VIRTUAL_HOST: $ORDS_SETTING_API_URL
+      VIRTUAL_PORT: $ORDS_SETTING_API_PORT
     ports:
-      - 8181:8181
       - 27017:27017
     volumes:
-    # echo CONN_STRING=sys/$(cat $HOME/db23c_database/secrets/dbcred.txt)@oracledb23c:1521/FREEPDB1 > secrets/conn_string.txt
-    # docker exec -it db23c_ords-ords-1 tail -f /tmp/install_container.log
-       - ./secrets:/opt/oracle/variables:ro
-       - ./settings/:/etc/ords/config/
+       - $ORDS_SETTINGS_BASE_DIR/ords_secrets:/opt/oracle/variables
+       - $ORDS_SETTINGS_BASE_DIR/ords_settings/:/etc/ords/config/
     networks:
       - oracle_network
     healthcheck:

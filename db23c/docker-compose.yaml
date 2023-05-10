@@ -16,7 +16,7 @@ services:
     hostname: oracle
     environment:
       ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
-      APP_USER: app
+      APP_USER: ${DATABASE_APP_USER}
       APP_USER_PASSWORD: ${DATABASE_APP_PASSWORD}
     ports:
       - 1521:1521
@@ -33,13 +33,13 @@ services:
     image: container-registry.oracle.com/database/ords:latest
     hostname: ords
     environment:
-      IGNORE_APEX: "TRUE"
-      VIRTUAL_HOST: ords.demodocker.fr
-      VIRTUAL_PORT: 8181
+      IGNORE_APEX: "$IGNORE_APEX"
+      VIRTUAL_HOST: $ORDS_SETTING_API_URL
+      VIRTUAL_PORT: $ORDS_SETTING_API_PORT
     ports:
       - 27017:27017
     volumes:
-       - $ORDS_SECRETS_BASE_DIR/ords_secrets:/opt/oracle/variables
+       - $ORDS_SETTINGS_BASE_DIR/ords_secrets:/opt/oracle/variables
        - $ORDS_SETTINGS_BASE_DIR/ords_settings/:/etc/ords/config/
     networks:
       - oracle_network
