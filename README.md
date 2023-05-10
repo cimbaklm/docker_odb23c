@@ -40,6 +40,7 @@ Latest Docker CE with docker compose plugin
 Latest SQLcl for connection testing
 
 Fill the .env file corresponding to the compose file you want to use (db23c contains the full set of entries) :
+
 '''python
 23c Database configuration entries (db32c_database) :
 DATABASE_SYSTEM_PASSWORD ==> sys & system password
@@ -62,6 +63,7 @@ ORDS_SETTING_API_PORT=8181
         - An Nginx reverse proxy with a backend pointing to the ORDS API
 
     Configuration :
+
     '''python
     cd db23c
     source .env
@@ -75,6 +77,7 @@ ORDS_SETTING_API_PORT=8181
     ```
 
     Creation of the container :
+
     '''python
     cd db23c
     docker compose up -d
@@ -87,6 +90,7 @@ ORDS_SETTING_API_PORT=8181
         - A latest Oracle Database 23c fre for developers with psersistent datafiles
 
     Configuration :
+
     '''python
     cd db23c_database
     source .env
@@ -95,6 +99,7 @@ ORDS_SETTING_API_PORT=8181
     ```
 
     Creation of the container :
+
     '''python
     cd db23c_database
     docker compose up -d
@@ -108,6 +113,7 @@ ORDS_SETTING_API_PORT=8181
         - An Nginx reverse proxy with a backend pointing to the ORDS API
 
     Configuration :
+
     '''python
     cd db23c
     source .env
@@ -120,6 +126,7 @@ ORDS_SETTING_API_PORT=8181
     ```
 
     Creation of the container :
+    
     '''python
     cd db23c_ords
     docker compose up -d
