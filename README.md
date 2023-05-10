@@ -57,10 +57,10 @@ ORDS_SETTING_API_PORT=8181
 
 ### For db23c
 
-    This docker compose file will create :
-        - A latest Oracle Database 23c fre for developers with psersistent datafiles
-        - A latest Oracle REST Data Services connected to the database
-        - An Nginx reverse proxy with a backend pointing to the ORDS API
+This docker compose file will create :
+    - A latest Oracle Database 23c fre for developers with psersistent datafiles
+    - A latest Oracle REST Data Services connected to the database
+    - An Nginx reverse proxy with a backend pointing to the ORDS API
 
     Configuration :
 
@@ -86,10 +86,10 @@ docker ps
 
 ### For db23c_database
 
-    This docker compose file will create :
-        - A latest Oracle Database 23c fre for developers with psersistent datafiles
+This docker compose file will create :
+    - A latest Oracle Database 23c fre for developers with psersistent datafiles
 
-    Configuration :
+Configuration :
 
 ```python
 cd db23c_database
@@ -98,7 +98,7 @@ source .env
 mkdir ${DB_DATA_BASE_DIR}/data ; chown :54321 ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data
 ```
 
-    Creation of the container :
+Creation of the container :
 
 ```python
 cd db23c_database
@@ -108,11 +108,11 @@ docker ps
 
 ### For db23c_ords
 
-    This docker compose file will create :
-        - A latest Oracle REST Data Services connected to the database
-        - An Nginx reverse proxy with a backend pointing to the ORDS API
+This docker compose file will create :
+    - A latest Oracle REST Data Services connected to the database
+    - An Nginx reverse proxy with a backend pointing to the ORDS API
 
-    Configuration :
+Configuration :
 
 ```python
 cd db23c_ords
@@ -125,7 +125,7 @@ mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/s
 echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
 ```
 
-    Creation of the container :
+Creation of the container :
 
 ```python
 cd db23c_ords
