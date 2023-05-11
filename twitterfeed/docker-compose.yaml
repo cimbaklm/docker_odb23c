@@ -12,7 +12,7 @@ services:
   alphaofficeui:
     image: wvbirder/alpha-office-ui-js
     ports:
-      - 085:8085
+      - 8085:8085
     networks:
       - oracle_network_demoapp
     depends_on:
