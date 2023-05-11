@@ -1,3 +1,5 @@
+connect app/Imust-change2023It
+
 alter session set nls_date_format = 'dd-mon-yy';
 INSERT INTO app.PRODUCTS VALUES (1039,1002,1011,'Crayola Original Markers - Broad Line, Classic Colors','AVAILABLE',3.19,4.25,2.99,6,'Images/OfficeSupplyProducts/Write/Write-Crayola_Markers.jpg','Crayola',NULL,NULL,NULL,NULL,NULL,NULL,'0','2014-01-10','0','2014-01-10',1);
 INSERT INTO app.PRODUCTS VALUES (1040,1002,1011,'Expo Low Odor Chisel Tip Dry Erase Markers, 4 Colored Markers','AVAILABLE',4.99,6.99,4.29,6,'Images/OfficeSupplyProducts/Write/Write-Expo_Dry_Erase.jpg','Expodryerase',NULL,NULL,NULL,NULL,NULL,NULL,'0','2014-01-10','0','2014-01-10',1);

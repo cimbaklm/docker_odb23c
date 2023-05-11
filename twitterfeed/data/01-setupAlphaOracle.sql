@@ -2,10 +2,7 @@
 set define off
 set pagesize 500
 
-shutdown immediate;
-startup mount;
-alter database noarchivelog;
-alter database open; 
+connect app/Imust-change2023It
 
 alter session set nls_date_format = 'yyyy-mm-dd';
 
