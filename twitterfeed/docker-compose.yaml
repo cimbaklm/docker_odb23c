@@ -41,7 +41,6 @@ services:
       timeout: 10s
       retries: 5
 networks:
-networks:
   oracle_network_demoapp:
     driver: bridge
 
