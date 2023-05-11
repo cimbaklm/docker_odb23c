@@ -23,7 +23,7 @@ services:
       oracledb:
         condition: service_healthy
   oracledb:
-    image: oracledb23cdemo-free:latest
+    image: oracledb23c:latest
     hostname: oracledb
     environment:
       ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
