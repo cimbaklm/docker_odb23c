@@ -124,7 +124,7 @@ mkdir ${ORDS_SETTINGS_BASE_DIR}/secrets ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/se
 mkdir ${ORDS_SETTINGS_BASE_DIR}/settings ; chmod 775 ${ORDS_SETTINGS_BASE_DIR}/settings
 
 # Secret file for ORDS first configuration
-echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}secrets/conn_string.txt
+echo CONN_STRING=sys/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1 > ${ORDS_SETTINGS_BASE_DIR}/secrets/conn_string.txt
 ```
 
 Creation of the container :
