@@ -15,9 +15,9 @@ services:
     image: gvenzl/oracle-free:latest
     hostname: oracle
     environment:
-      ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
-      APP_USER: ${DATABASE_APP_USER}
-      APP_USER_PASSWORD: ${DATABASE_APP_PASSWORD}
+      ORACLE_PASSWORD: $DATABASE_SYSTEM_PASSWORD
+      APP_USER: $DATABASE_APP_USER
+      APP_USER_PASSWORD: $DATABASE_APP_PASSWORD
     ports:
       - 1521:1521
     volumes:
