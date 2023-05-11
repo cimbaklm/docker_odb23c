@@ -7,7 +7,7 @@ services:
     networks:
       - oracle_network
     depends_on:
-      oracle:
+      oracledb:
         condition: service_healthy
   restclient:
     image: wvbirder/restclient
@@ -20,7 +20,7 @@ services:
     networks:
       - oracle_network
     depends_on:
-      oracle:
+      oracledb:
         condition: service_healthy
   oracledb:
     image: oracledb23cdemo-free:latest
