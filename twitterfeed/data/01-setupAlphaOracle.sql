@@ -3,7 +3,7 @@ set define off
 set pagesize 500
 
 create user demo identified by "Imust-change2023It";
-grant connect,resource,dba to alpha;
+grant connect,resource,dba to demo;
 
 connect demo/Imust-change2023It
 
