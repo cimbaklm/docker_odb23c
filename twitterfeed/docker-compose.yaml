@@ -5,7 +5,7 @@ services:
     ports:
       - 9080:9080
     networks:
-      - oracle_network
+      - oracle_network_demoapp
     depends_on:
       oracledb:
         condition: service_healthy
@@ -18,7 +18,7 @@ services:
     ports:
       - 8002:8002
     networks:
-      - oracle_network
+      - oracle_network_demoapp
     depends_on:
       oracledb:
         condition: service_healthy
@@ -34,16 +34,16 @@ services:
     volumes:
       - $DB_DATA_BASE_DIR/data:/opt/oracle/oradata
     networks:
-      - oracle_network
+      - oracle_network_demoapp
     healthcheck: 
       test: ["CMD", "healthcheck.sh"]
       interval: 30s
       timeout: 10s
       retries: 5
 networks:
-  oracle_network:
-    name: db23c_database_oracle_network
-    external: true
+networks:
+  oracle_network_demoapp:
+    driver: bridge
 
 #docker run -d -it --rm --name restclient -p=8002:8002 -e ORACLE_USER="app" -e ORACLE_PASSWORD="Imust-change2023It" -e ORACLE_CONNECT='oracle:1521/FREEPDB1' -e DS='oracle' --network db23c_oracle_network wvbirder/restclient
 #docker run -d --name=twitterfeed -p=9080:9080 wvbirder/twitterfeed --network db23c_oracle_network
