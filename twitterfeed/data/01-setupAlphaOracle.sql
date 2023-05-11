@@ -2,12 +2,15 @@
 set define off
 set pagesize 500
 
-connect app/Imust-change2023It
+create user demo identified by "Imust-change2023It";
+grant connect,resource,dba to alpha;
+
+connect demo/Imust-change2023It
 
 alter session set nls_date_format = 'yyyy-mm-dd';
 
-drop table app.products;
-CREATE TABLE app.PRODUCTS 
+drop table products;
+CREATE TABLE PRODUCTS 
    (	PRODUCT_ID NUMERIC(15,0), 
 	PARENT_CATEGORY_ID NUMERIC(15,0), 
 	CATEGORY_ID NUMERIC(15,0), 
@@ -33,8 +36,8 @@ CREATE TABLE app.PRODUCTS
    );
 
 
-drop table app.product_categories;
-CREATE TABLE app.PRODUCT_CATEGORIES 
+drop table product_categories;
+CREATE TABLE PRODUCT_CATEGORIES 
    (	CATEGORY_ID NUMERIC(15,0), 
 	CATEGORY_NAME VARCHAR(40), 
 	PARENT_CATEGORY_ID NUMERIC(15,0), 
