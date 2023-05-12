@@ -7,7 +7,7 @@ This repo aims at giving some examples on how to deploy the FREE Oracle Database
 Use git clone :
 
 ```bash
-git clone git clone https://github.com/cimbaklm/docker_odb23c.git
+git clone https://github.com/ocimbaluria/docker_odb23c.git
 ```
 
 ## Tree
