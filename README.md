@@ -20,14 +20,23 @@ git clone https://github.com/ocimbaluria/docker_odb23c.git
 ├── db23c_database
 │   ├── .env
 │   └── docker-compose.yaml
-└── db23c_ords
+├── db23c_ords
+│   ├── .env
+│   └── docker-compose.yaml
+└── twitterfeed
     ├── .env
-    └── docker-compose.yaml
-```
+    ├── Dockerfile
+    ├── data
+    │   ├── 01-setupAlphaOracle.sql
+    │   ├── 02-finalprod.sql
+    │   └── 03-finalcat.sql
+    ├── docker-compose.yaml
+    └── finalcat.sql```
 
 db23c is the full compose package, it include : Oracle DB 23c FREE for dev latest, Oracle REST DATA Services latest, and NGINX in order to expose ORDS REST API
 db23c_database create the database only
 db23c_ords attach ORDS to a previously created database with Nginx configured as a reverse proxy pointing to the API (http only for demo purpose)
+twitterfeed is an example application that uses two data sources (from two containers) to show products and the popularity of some products (with statics JSON twitter for demo purpose)
 
 ## Usage
 
@@ -58,7 +67,7 @@ ORDS_SETTING_API_PORT        ==> Port used by ORDS (default 8181, until changed 
 ### For db23c
 
 This docker compose file will create :
-    - A latest Oracle Database 23c fre for developers with psersistent datafiles
+    - A latest Oracle Database 23c free for developers with psersistent datafiles
     - A latest Oracle REST Data Services connected to the database
     - An Nginx reverse proxy with a backend pointing to the ORDS API
 
@@ -89,7 +98,7 @@ docker ps
 ### For db23c_database
 
 This docker compose file will create :
-    - A latest Oracle Database 23c fre for developers with psersistent datafiles
+    - A latest Oracle Database 23c free for developers with psersistent datafiles
 
 Configuration :
 
@@ -131,6 +140,33 @@ Creation of the container :
 
 ```python
 cd db23c_ords
+docker compose up -d
+docker ps
+```
+
+### For twitterfeed
+
+This docker compose file will create :
+    - An specific image including initialisation script using the latest Oracle Database 23c free for developers with psersistent datafiles
+    - A REST API connected to the application schema of the database
+    - A REST API giving twitter feeds by products
+    - An application UI to show the result
+
+Configuration :
+
+```python
+cd twitterfeed
+source .env
+# Directories creation
+sudo mkdir -p ${DB_DATA_BASE_DIR} ; sudo chown $USER:$USER ${DB_DATA_BASE_DIR}
+mkdir -p ${DB_DATA_BASE_DIR}/data ; chmod 775 ${DB_DATA_BASE_DIR}/data ; sudo chown :54321 ${DB_DATA_BASE_DIR}/data
+docker build -t oracledb23c .
+```
+
+Creation of the container :
+
+```python
+cd twitterfeed
 docker compose up -d
 docker ps
 ```
