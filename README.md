@@ -31,7 +31,8 @@ git clone https://github.com/ocimbaluria/docker_odb23c.git
     │   ├── 02-finalprod.sql
     │   └── 03-finalcat.sql
     ├── docker-compose.yaml
-    └── finalcat.sql```
+    └── finalcat.sql
+```
 
 db23c is the full compose package, it include : Oracle DB 23c FREE for dev latest, Oracle REST DATA Services latest, and NGINX in order to expose ORDS REST API
 db23c_database create the database only
