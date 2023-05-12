@@ -68,8 +68,11 @@ ORDS_SETTING_API_PORT        ==> Port used by ORDS (default 8181, until changed 
 ### For db23c
 
 This docker compose file will create :
+
     - A latest Oracle Database 23c free for developers with psersistent datafiles
+
     - A latest Oracle REST Data Services connected to the database
+    
     - An Nginx reverse proxy with a backend pointing to the ORDS API
 
 Configuration :
