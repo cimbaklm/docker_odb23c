@@ -1,21 +1,18 @@
 # Creation time : 6m
 services:
   twitterfeed:
-    name: twitterfeed
     image: wvbirder/twitterfeed
     ports:
       - 9080:9080
     networks:
       - nw_oracledb_demo
   alphaofficeui:
-    name: alphaofficeui
     image: wvbirder/alpha-office-ui-js
     ports:
       - 8085:8085
     networks:
       - nw_oracledb_demo
   restclient:
-    name: restclient
     image: wvbirder/restclient
     environment:
       ORACLE_USER: $DATABASE_APP_USER
