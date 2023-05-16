@@ -1,0 +1,35 @@
+# Creation time : 6m
+services:
+  twitterfeed:
+    image: wvbirder/twitterfeed
+    ports:
+      - 9080:9080
+    networks:
+      - oracle_network_demoapp
+    depends_on:
+      oracledb:
+        condition: service_healthy
+  alphaofficeui:
+    image: wvbirder/alpha-office-ui-js
+    ports:
+      - 8085:8085
+    networks:
+      - oracle_network_demoapp
+    depends_on:
+      oracledb:
+        condition: service_healthy
+  restclient:
+    image: wvbirder/restclient
+    environment:
+      ORACLE_USER: $DATABASE_APP_USER
+      ORACLE_PASSWORD: $DATABASE_APP_PASSWORD
+      ORACLE_CONNECT: "oracledb:1521/FREEPDB1"
+    ports:
+      - 8002:8002
+    networks:
+      - nw_oracledb_demo
+networks:
+  nw_oracledb_demo:
+    name: nw_oracledb_demo
+    external: true
+
