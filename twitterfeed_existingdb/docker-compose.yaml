@@ -6,18 +6,12 @@ services:
       - 9080:9080
     networks:
       - nw_oracledb_demo
-    depends_on:
-      oracledb:
-        condition: service_healthy
   alphaofficeui:
     image: wvbirder/alpha-office-ui-js
     ports:
       - 8085:8085
     networks:
       - nw_oracledb_demo
-    depends_on:
-      oracledb:
-        condition: service_healthy
   restclient:
     image: wvbirder/restclient
     environment:
