@@ -5,7 +5,7 @@ services:
     ports:
       - 9080:9080
     networks:
-      - oracle_network_demoapp
+      - nw_oracledb_demo
     depends_on:
       oracledb:
         condition: service_healthy
@@ -14,7 +14,7 @@ services:
     ports:
       - 8085:8085
     networks:
-      - oracle_network_demoapp
+      - nw_oracledb_demo
     depends_on:
       oracledb:
         condition: service_healthy
