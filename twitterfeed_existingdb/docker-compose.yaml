@@ -26,4 +26,3 @@ networks:
   nw_oracledb_demo:
     name: nw_oracledb_demo
     external: true
-
