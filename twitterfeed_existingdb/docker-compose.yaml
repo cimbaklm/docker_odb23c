@@ -7,7 +7,7 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
-      - oracle_network
+      - nw_oracledb_demo
     depends_on:
       alphaofficeui:
         condition: service_healthy
