@@ -7,19 +7,10 @@ services:
     networks:
       - nw_oracledb_demo
   alphaofficeui:
-    image: wvbirder/alpha-office-ui-js
+    build: ./builds
+    image: olivier/alpha-office-ui-js
     ports:
       - 8085:8085
-    networks:
-      - nw_oracledb_demo
-  restclient:
-    image: wvbirder/restclient
-    environment:
-      ORACLE_USER: $DATABASE_APP_USER
-      ORACLE_PASSWORD: $DATABASE_APP_PASSWORD
-      ORACLE_CONNECT: "oracledb:1521/FREEPDB1"
-    ports:
-      - 8002:8002
     networks:
       - nw_oracledb_demo
 networks:
