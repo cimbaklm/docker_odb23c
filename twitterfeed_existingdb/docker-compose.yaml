@@ -1,16 +1,5 @@
 # Creation time : 6m
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    ports:
-      - "80:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - oracle_network
-    depends_on:
-      alphaofficeui:
-        condition: service_healthy
   twitterfeed:
     image: wvbirder/twitterfeed
     ports:
