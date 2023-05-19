@@ -1,5 +1,16 @@
 # Creation time : 6m
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - oracle_network
+    depends_on:
+      alphaofficeui:
+        condition: service_healthy
   twitterfeed:
     image: wvbirder/twitterfeed
     ports:
@@ -13,6 +24,14 @@ services:
       - 8085:8085
     networks:
       - nw_oracledb_demo
+    environment:
+      VIRTUAL_HOST: $APP_URL
+      VIRTUAL_PORT: $APP_PORT
+    healthcheck:
+      test: ["CMD", "curl", "-X", "GET", "http://alphaofficeui:8085"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 networks:
   nw_oracledb_demo:
     name: nw_oracledb_demo
