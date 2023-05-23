@@ -10,12 +10,6 @@ services:
     depends_on:
       alphaofficeui:
         condition: service_healthy
-  twitterfeed:
-    image: wvbirder/twitterfeed
-    ports:
-      - 9080:9080
-    networks:
-      - nw_oracledb_demo
   alphaofficeui:
     build: ./builds
     image: olivier/alpha-office-ui-js
