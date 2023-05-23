@@ -318,7 +318,7 @@ function getTwitter(harshtagParm) {
         $.each(holder.items, function(index, details) {
             console.log (details);
             if (details.value.text) { 
-                console.log (detail.value.text);
+                console.log (details.value.text);
                 var dateSortString = details.value.timestamp_ms;                               
                 var theDate = new Date(parseInt(details.value.timestamp_ms)); 
                 var month = monthArray[theDate.getMonth()];                  
