@@ -150,7 +150,7 @@ function selectProduct(idParm) {
     hashtagVar = productArray[idParm].hashtag;
     twitterDataLoadedVar = false;
     transitionCompletedVar = false;    
-    //getTwitter(hashtagVar);
+    getTwitter(hashtagVar);
     popupObjVar = document.getElementById("popupTable");
     document.getElementById("popupProductContentDiv").innerHTML = innerProductPanelHTML(idParm);  
     selectedObjVar = document.getElementById("PROD" + idParm);
@@ -312,7 +312,7 @@ function getTwitter(harshtagParm) {
     function buildTwitterArray() { 
         indexVar = 0;
         // Loop through all the JSON Twitter records returned by the Twitter REST service
-        $.each(holder.items, function(index, details) {       
+        $.each(holder.tweets, function(index, details) {       
             if (details.text) { 
                 var dateSortString = details.timestamp_ms;                               
                 var theDate = new Date(parseInt(details.timestamp_ms)); 
