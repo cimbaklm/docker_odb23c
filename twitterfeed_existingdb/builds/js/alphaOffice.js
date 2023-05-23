@@ -315,7 +315,7 @@ function getTwitter(harshtagParm) {
         indexVar = 0;
         // Loop through all the JSON Twitter records returned by the Twitter REST service
         $.each(holder.items, function(index, details) {
-            if (details.text) { 
+            if (details.value.text) { 
                 console.log (detail.value.text);
                 var dateSortString = details.value.timestamp_ms;                               
                 var theDate = new Date(parseInt(details.value.timestamp_ms)); 
