@@ -314,12 +314,11 @@ function getTwitter(harshtagParm) {
     function buildTwitterArray() { 
         indexVar = 0;
         // Loop through all the JSON Twitter records returned by the Twitter REST service
-        $.each(holder.items, function(index, details_full) {
-            var details=details_full.value;
+        $.each(holder.items, function(index, details) {
             if (details.text) { 
-                console.log (detail.text);
-                var dateSortString = details.timestamp_ms;                               
-                var theDate = new Date(parseInt(details.timestamp_ms)); 
+                console.log (detail.value.text);
+                var dateSortString = details.value.timestamp_ms;                               
+                var theDate = new Date(parseInt(details.value.timestamp_ms)); 
                 var month = monthArray[theDate.getMonth()];                  
                 var hour = theDate.getHours(); if((hour<7)&&(theDate.getMinutes()<50)){hour=hour+9;dateSortString=(dateSortString*1)+32400000;}                
                 var ampmVar = ampmArray[Math.floor(hour/12)]; 
@@ -327,10 +326,10 @@ function getTwitter(harshtagParm) {
                 var minute = "0" + theDate.getMinutes(); minute = minute.substr(-2);        
                 var dateString = hour + ":" + minute + " " + ampmVar + " - " + month + " " +
                     theDate.getDate() + ", " + theDate.getFullYear(); 
-                 var iVar = details.id_str;var rpVar=iVar.charAt(2)%3;var rtVar=iVar.charAt(4)%2;var lVar=iVar.charAt(6)%5;
+                 var iVar = details.value.id_str;var rpVar=iVar.charAt(2)%3;var rtVar=iVar.charAt(4)%2;var lVar=iVar.charAt(6)%5;
                     if(rpVar==0){rpVar=" ";}if(rtVar==0){rtVar=" ";}if(lVar==0){lVar=" ";}
                 // Load the twitterArray with data from the Twitter REST service.  Also create a starting value for the tweetHTML string based on a previously loaded tweetTableTemplateVar.                                 
-                twitterArray[indexVar] = {screenName: details.user.screen_name.trim(), name: details.user.name.trim(),  tweetText: formatTweetText(details.text), 
+                twitterArray[indexVar] = {screenName: details.value.user.screen_name.trim(), name: details.value.user.name.trim(),  tweetText: formatTweetText(details.value.text), 
                      tweetTimestamp: dateSortString, tweetDate: dateString, id_str: details.id_str, tweetHTML: tweetTableTemplateVar};  
                 // Replace placeholders in the tweetHTML string with specific values for the Tweet record.                        
                 twitterArray[indexVar].tweetHTML =  twitterArray[indexVar].tweetHTML.replace("~NAME~", twitterArray[indexVar].name);  
