@@ -304,7 +304,7 @@ function getTwitter(harshtagParm) {
             buildTwitterArray();
         }
         catch(err){
-            console.log("Error retrieving the Product data from the JSON Endpoint.")
+            console.log("Error retrieving the Product data from the JSON Endpoint. " + err)
         }
     });
       
