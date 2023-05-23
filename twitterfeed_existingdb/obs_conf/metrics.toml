@@ -1,0 +1,24 @@
+[[metric]]
+context = "products"
+request = "SELECT count(1) as num_prod FROM app.products"
+metricsdesc = { num_prod = "Number of products." }
+
+[[metric]]
+context = "system"
+request = "select count(*) as session_count from v$session where username is not null and type = 'USER' and con_id = sys_context('userenv','con_id')"
+metricsdesc = { session_count = "Current session count." }
+
+[[metric]]
+context = "system"
+request = "select count(*) as active_sessions from v$session where username is not null and type = 'USER' and status = 'ACTIVE' and con_id = sys_context('userenv','con_id')"
+metricsdesc = { active_sessions = "Active sessions." }
+
+[[metric]]
+context = "system"
+request = "select (c.session_count - a.active_sessions) as inactive_sessions from (select count(*) as session_count from v$session where username is not null and type = 'USER' and con_id = sys_context('userenv','con_id')) c, (select count(*) as active_sessions from v$session where username is not null and type = 'USER' and status = 'ACTIVE' and con_id = sys_context('userenv','con_id')) a"
+metricsdesc = { inactive_sessions = "Inactive sessions." }
+
+[[metric]]
+context = "system"
+request = "select b.session_count as blocked_sessions from (select count(*) as session_count from v$session where username is not null and type = 'USER' and blocking_session_status = 'VALID' and con_id = sys_context('userenv','con_id')) b"
+metricsdesc = { blocked_sessions = "Blocked sessions." }

@@ -10,6 +10,26 @@ services:
     depends_on:
       alphaofficeui:
         condition: service_healthy
+  exporter:
+    image: container-registry.oracle.com/database/observability-exporter:0.1.0
+    ports:
+      - 9161:9161
+    volumes:
+      - ./obs_conf/metrics.toml:/metrics.toml
+    environment:
+      DEFAULT_METRICS: /metrics.toml
+      DATA_SOURCE_NAME: system/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1
+    networks:
+      - nw_oracledb_demo
+  prometheus:
+    image: container-registry.oracle.com/database/observability-exporter:0.1.0
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prom_conf/prometheus.yaml:/etc/prometheus/prometheus.yml
+    command: --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - nw_oracledb_demo
   alphaofficeui:
     build: ./builds
     image: olivier/alpha-office-ui-js
