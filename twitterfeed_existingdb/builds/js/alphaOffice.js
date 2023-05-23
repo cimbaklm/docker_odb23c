@@ -10,7 +10,7 @@ var dbServiceURL = "http://" + location.hostname + ":8181/ords/app/products";
 
 // URL for the Twitter REST service
 // var tweetServiceBaseURL = "http://129.213.47.135:9080/statictweets";
-var tweetServiceBaseURL = "http://" + location.hostname + ":9080/statictweets";
+var tweetServiceBaseURL = "http://" + location.hostname + ":8181/ords/app/soda/latest/sampletweets";
 
 /*********************************************************
 CHANGE THE URLS ABOVE FOR THE WORKSHOP.    
@@ -293,7 +293,7 @@ var twitterArray;
 // Call REST service Java code extracting appropriate records from the Twitter JSON file based on harshtagParm.  The "/%23" adds a "#" to the beginning of the hashtag search string.
 function getTwitter(harshtagParm) {
     twitterArray = new Array();
-    $.getJSON(tweetServiceBaseURL + "/%23" + harshtagParm, function (data) {
+    $.getJSON(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"", function (data) {
         try{
             holder =data;
             buildTwitterArray();
