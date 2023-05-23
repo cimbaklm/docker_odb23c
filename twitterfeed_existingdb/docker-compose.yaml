@@ -22,7 +22,7 @@ services:
     networks:
       - nw_oracledb_demo
   prometheus:
-    image: container-registry.oracle.com/database/observability-exporter:0.1.0
+    image: prom/prometheus
     ports:
       - 9090:9090
     volumes:
