@@ -56,6 +56,7 @@ $(document).ready(function () {
         return;
     }
     // Call REST service Node.js accessing MySQL product data.
+    console.log(dbServiceURL);
     $.getJSON(dbServiceURL, function (data) {
         try{
             holder =data;
@@ -296,8 +297,8 @@ var twitterArray;
 function getTwitter(harshtagParm) {
     twitterArray = new Array();
 //    $.getJSON(tweetServiceBaseURL + "/%23" + harshtagParm, function (data) {
-        console.log(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"");
-        $.getJSON(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"", function (data) {
+        console.log(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"}}");
+        $.getJSON(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"}}", function (data) {
         try{
             holder =data;
             buildTwitterArray();
