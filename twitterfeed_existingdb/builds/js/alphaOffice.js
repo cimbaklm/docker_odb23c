@@ -301,6 +301,7 @@ function getTwitter(harshtagParm) {
         $.getJSON(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"}}", function (data) {
         try{
             holder =data;
+            console.log (holder);
             buildTwitterArray();
         }
         catch(err){
