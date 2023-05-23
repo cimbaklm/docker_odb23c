@@ -26,8 +26,8 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./prom_conf/prometheus.yaml:/etc/prometheus/prometheus.yml
-    command: --config.file=/etc/prometheus/prometheus.yml
+      - ./prom_conf/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    command: --config.file=/etc/prometheus/prometheus.yaml
     networks:
       - nw_oracledb_demo
   alphaofficeui:
