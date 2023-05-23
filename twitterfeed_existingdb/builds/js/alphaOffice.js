@@ -150,7 +150,7 @@ function selectProduct(idParm) {
     hashtagVar = productArray[idParm].hashtag;
     twitterDataLoadedVar = false;
     transitionCompletedVar = false;    
-    //getTwitter(hashtagVar);
+    getTwitter(hashtagVar);
     popupObjVar = document.getElementById("popupTable");
     document.getElementById("popupProductContentDiv").innerHTML = innerProductPanelHTML(idParm);  
     selectedObjVar = document.getElementById("PROD" + idParm);
