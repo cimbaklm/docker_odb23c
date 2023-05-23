@@ -296,12 +296,9 @@ var twitterArray;
 // Call REST service Java code extracting appropriate records from the Twitter JSON file based on harshtagParm.  The "/%23" adds a "#" to the beginning of the hashtag search string.
 function getTwitter(harshtagParm) {
     twitterArray = new Array();
-//    $.getJSON(tweetServiceBaseURL + "/%23" + harshtagParm, function (data) {
-        console.log(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"}}");
         $.getJSON(tweetServiceBaseURL + "/?q={\"text\":{\"$instr\":\"" + harshtagParm + "\"}}", function (data) {
         try{
             holder =data;
-            console.log (holder);
             buildTwitterArray();
         }
         catch(err){
@@ -316,9 +313,7 @@ function getTwitter(harshtagParm) {
         indexVar = 0;
         // Loop through all the JSON Twitter records returned by the Twitter REST service
         $.each(holder.items, function(index, details) {
-            console.log (details);
             if (details.value.text) { 
-                console.log (details.value.text);
                 var dateSortString = details.value.timestamp_ms;                               
                 var theDate = new Date(parseInt(details.value.timestamp_ms)); 
                 var month = monthArray[theDate.getMonth()];                  
