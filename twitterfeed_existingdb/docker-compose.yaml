@@ -1,6 +1,7 @@
 services:
   nginx-proxy:
     image: jwilder/nginx-proxy
+    container_name: nginx
     ports:
       - "80:80"
     volumes:
@@ -12,6 +13,7 @@ services:
         condition: service_healthy
   exporter:
     image: container-registry.oracle.com/database/observability-exporter:0.1.0
+    container_name: exporter
     ports:
       - 9161:9161
     volumes:
@@ -23,6 +25,7 @@ services:
       - nw_oracledb_demo
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     ports:
       - 9090:9090
     volumes:
@@ -33,6 +36,7 @@ services:
   alphaofficeui:
     build: ./builds
     image: olivier/alpha-office-ui-js
+    container_name: alphaofficeui
     ports:
       - 8085:8085
     networks:
