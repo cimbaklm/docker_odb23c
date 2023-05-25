@@ -2,10 +2,10 @@
 set define off
 set pagesize 500
 
-create user demo identified by "Imust-change2023It";
-grant connect,resource,dba to demo;
+create user app identified by "Imust-change2023It";
+grant connect,resource,dba to app;
 
-connect demo/Imust-change2023It
+connect app/Imust-change2023It
 
 alter session set nls_date_format = 'yyyy-mm-dd';
 
@@ -55,5 +55,26 @@ CREATE TABLE PRODUCT_CATEGORIES
 
 ALTER TABLE PRODUCT_CATEGORIES
 ADD CONSTRAINT PRODUCT_CATEGORIES_PK PRIMARY KEY (CATEGORY_ID);
+
+BEGIN
+   ORDS.enable_schema(
+      p_enabled             => TRUE,
+      p_schema              => 'APP',
+      p_url_mapping_type    => 'BASE_PATH',
+      p_url_mapping_pattern => 'app',
+      p_auto_rest_auth      => TRUE
+    );
+ 
+    COMMIT;
+  END;
+ /
+
+BEGIN
+    ords.delete_privilege_mapping(
+      'oracle.soda.privilege.developer',
+      '/soda/*');
+    COMMIT;
+  END;
+ /
 
 exit;
