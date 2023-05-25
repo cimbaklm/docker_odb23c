@@ -28,7 +28,7 @@ services:
       timeout: 10s
       retries: 5    
     depends_on:
-      oracledb:
+      oracle:
         condition: service_healthy
     networks:
       - oracle_network_demoapp
@@ -70,9 +70,9 @@ services:
     command: --config.file=/etc/prometheus/prometheus.yaml
     networks:
       - nw_oracledb_demo
-  oracledb:
+  oracle:
     image: oracledb23c:latest
-    hostname: oracledb
+    container_name: oracle
     environment:
       ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
     ports:
