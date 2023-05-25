@@ -59,7 +59,7 @@ services:
       DEFAULT_METRICS: /metrics.toml
       DATA_SOURCE_NAME: system/${DATABASE_SYSTEM_PASSWORD}@oracle:1521/FREEPDB1
     networks:
-      - nw_oracledb_demo
+      - oracle_network_demoapp
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -69,7 +69,7 @@ services:
       - ./prom_conf/prometheus.yaml:/etc/prometheus/prometheus.yaml
     command: --config.file=/etc/prometheus/prometheus.yaml
     networks:
-      - nw_oracledb_demo
+      - oracle_network_demoapp
   oracle:
     build: ./builds_db
     image: olivier/oracledb23c
