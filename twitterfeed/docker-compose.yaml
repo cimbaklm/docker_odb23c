@@ -33,7 +33,7 @@ services:
     networks:
       - oracle_network_demoapp
   alphaofficeui:
-    build: ./builds
+    build: ./builds_js
     image: olivier/alpha-office-ui-js
     container_name: alphaofficeui
     ports:
@@ -71,7 +71,8 @@ services:
     networks:
       - nw_oracledb_demo
   oracle:
-    image: oracledb23c:latest
+    build: ./builds_db
+    image: olivier/oracledb23c
     container_name: oracle
     environment:
       ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
