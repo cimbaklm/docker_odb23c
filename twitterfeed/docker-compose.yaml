@@ -1,36 +1,21 @@
 # Creation time : 6m
 services:
-  twitterfeed:
-    image: wvbirder/twitterfeed
-    ports:
-      - 9080:9080
-    networks:
-      - oracle_network_demoapp
-    depends_on:
-      oracledb:
-        condition: service_healthy
   alphaofficeui:
-    image: wvbirder/alpha-office-ui-js
+    build: ./builds
+    image: olivier/alpha-office-ui-js
+    container_name: alphaofficeui
     ports:
       - 8085:8085
     networks:
       - oracle_network_demoapp
-    depends_on:
-      oracledb:
-        condition: service_healthy
-  restclient:
-    image: wvbirder/restclient
     environment:
-      ORACLE_USER: $DATABASE_APP_USER
-      ORACLE_PASSWORD: $DATABASE_APP_PASSWORD
-      ORACLE_CONNECT: "oracledb:1521/FREEPDB1"
-    ports:
-      - 8002:8002
-    networks:
-      - oracle_network_demoapp
-    depends_on:
-      oracledb:
-        condition: service_healthy
+      VIRTUAL_HOST: $APP_URL
+      VIRTUAL_PORT: $APP_PORT
+    healthcheck:
+      test: ["CMD", "curl", "-X", "GET", "http://alphaofficeui:8085"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
   oracledb:
     image: oracledb23c:latest
     hostname: oracledb
@@ -52,6 +37,3 @@ services:
 networks:
   oracle_network_demoapp:
     driver: bridge
-
-#docker run -d -it --rm --name restclient -p=8002:8002 -e ORACLE_USER="app" -e ORACLE_PASSWORD="Imust-change2023It" -e ORACLE_CONNECT='oracle:1521/FREEPDB1' -e DS='oracle' --network db23c_oracle_network wvbirder/restclient
-#docker run -d --name=twitterfeed -p=9080:9080 wvbirder/twitterfeed --network db23c_oracle_network
