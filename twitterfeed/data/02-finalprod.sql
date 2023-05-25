@@ -1,4 +1,4 @@
-connect demo/Imust-change2023It
+connect app/Imust-change2023It
 alter session set nls_date_format = 'yyyy-mm-dd';
 
 INSERT INTO PRODUCTS VALUES (1039,1002,1011,'Crayola Original Markers - Broad Line, Classic Colors','AVAILABLE',3.19,4.25,2.99,6,'Images/OfficeSupplyProducts/Write/Write-Crayola_Markers.jpg','Crayola',NULL,NULL,NULL,NULL,NULL,NULL,'0','2014-01-10','0','2014-01-10',1);
