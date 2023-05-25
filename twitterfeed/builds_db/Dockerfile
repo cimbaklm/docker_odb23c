@@ -1,4 +1,4 @@
-FROM gvenzl/oracle-free:latest
+FROM gvenzl/oracle-free:slim
 
 RUN mkdir -p /container-entrypoint-initdb.d
 COPY ./data/01-setupAlphaOracle.sql /container-entrypoint-initdb.d
