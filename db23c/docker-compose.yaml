@@ -2,6 +2,7 @@
 services:
   nginx-proxy:
     image: jwilder/nginx-proxy
+    container_name: nginx
     ports:
       - "80:80"
     volumes:
@@ -13,6 +14,7 @@ services:
         condition: service_healthy
   oracle:
     image: gvenzl/oracle-free:latest
+    container_name: oracle
     hostname: oracle
     environment:
       ORACLE_PASSWORD: $DATABASE_SYSTEM_PASSWORD
@@ -31,7 +33,7 @@ services:
       retries: 5
   ords:
     image: container-registry.oracle.com/database/ords:latest
-    hostname: ords
+    container_name: ords
     environment:
       IGNORE_APEX: "$IGNORE_APEX"
       VIRTUAL_HOST: $ORDS_SETTING_API_URL

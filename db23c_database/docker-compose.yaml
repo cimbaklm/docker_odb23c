@@ -1,8 +1,8 @@
 # Creation time : 1m
 services:
   oracle_database:
-    image: gvenzl/oracle-free:latest
-    hostname: oracledb23c
+    image: gvenzl/oracle-free:slim
+    container_name: oracle
     environment:
       ORACLE_PASSWORD: ${DATABASE_SYSTEM_PASSWORD}
       APP_USER: ${DATABASE_APP_USER}
